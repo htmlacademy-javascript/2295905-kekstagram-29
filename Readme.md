@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Sergiu Negara](https://up.htmlacademy.ru/javascript/29/user/2295905).
-* Наставник: `Неизвестно`.
+- Студент: [Sergiu Negara](https://up.htmlacademy.ru/javascript/29/user/2295905).
+- Наставник: `Коля Колганов`.
 
 ---
 
