@@ -7,6 +7,6 @@ function isSmallerThanLength(text, length) {
 function isPalindrome(string) {
   return (
     string.toLowerCase() ===
-    string.replaceAll(" ", "").toLowerCase().split("").reverse().join("")
+    string.replaceAll(' ', '').toLowerCase().split('').reverse().join('')
   );
 }
