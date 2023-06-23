@@ -53,7 +53,7 @@ const createComment = (id) => ({
 const createComments = () =>
   Array.from(
     { length: getRandomInteger(CommentsRange.MIN, CommentsRange.MAX) },
-    (_, index) => createComment(index)
+    (_, index) => createComment(index + 1)
   );
 
 const createPhoto = (id) => ({
@@ -66,7 +66,7 @@ const createPhoto = (id) => ({
 });
 
 const createPhotos = () =>
-  Array.from({ length: PHOTO_COUNT }, (_, index) => createPhoto(index));
+  Array.from({ length: PHOTO_COUNT }, (_, index) => createPhoto(index + 1));
 
 createComments();
 createPhotos();
