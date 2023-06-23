@@ -1,23 +1,23 @@
 const PHOTO_COUNT = 25;
 
-const likesRange = {
+const LikesRange = {
   MIN: 15,
   MAX: 200,
 };
 
-const commentsRange = {
+const CommentsRange = {
   MIN: 0,
   MAX: 30,
 };
 
-const avatarRange = {
+const AvatarRange = {
   MIN: 1,
   MAX: 6,
 };
 
-const description = ['На отдыхе', 'У моря', 'На работе', 'На прогулке'];
+const DESCRIPTIONS = ['На отдыхе', 'У моря', 'На работе', 'На прогулке'];
 
-const message = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -26,7 +26,7 @@ const message = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const NAME = [
+const NAMES = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -45,25 +45,26 @@ const getRandomArrayElement = (elements) =>
 
 const createComment = (id) => ({
   id: ++id,
-  avatar: `avatar/${getRandomInteger(avatarRange.MIN, avatarRange.MAX)}.svg`,
-  message: `${getRandomArrayElement(message)}`,
-  name: `${getRandomArrayElement(NAME)}`,
-});
-
-const createPhoto = (id) => ({
-  id: ++id,
-  name: `${getRandomArrayElement(NAME)}`,
-  url: `photos/${id}.jpg`,
-  description: `${getRandomArrayElement(description)}`,
-  likes: getRandomInteger(likesRange.MIN, likesRange.MAX),
-  comments: createComment(),
+  avatar: `avatar/${getRandomInteger(AvatarRange.MIN, AvatarRange.MAX)}.svg`,
+  message: `${getRandomArrayElement(MESSAGES)}`,
+  name: `${getRandomArrayElement(NAMES)}`,
 });
 
 const createComments = () =>
   Array.from(
-    { length: getRandomInteger(commentsRange.MIN, commentsRange.MAX) },
+    { length: getRandomInteger(CommentsRange.MIN, CommentsRange.MAX) },
     (_, index) => createComment(index)
   );
+
+const createPhoto = (id) => ({
+  id: ++id,
+  name: `${getRandomArrayElement(NAMES)}`,
+  url: `photos/${id}.jpg`,
+  description: `${getRandomArrayElement(DESCRIPTIONS)}`,
+  likes: getRandomInteger(LikesRange.MIN, LikesRange.MAX),
+  comments: createComments(),
+});
+
 const createPhotos = () =>
   Array.from({ length: PHOTO_COUNT }, (_, index) => createPhoto(index));
 
