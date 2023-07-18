@@ -1,16 +1,18 @@
 // String
 function isSmallerThanLength(text, length) {
-  return text.length < length;
+  return text.length <= length;
 }
 
-isSmallerThanLength('проверяемая строка', 18);
+isSmallerThanLength("проверяемая строка", 18);
 
 // Palindrome
 
 function isPalindrome(string) {
-  const optimizeString = string.toLowerCase().replaceAll(' ', '');
+  const optimizeString = string.toLowerCase().replaceAll(" ", "");
 
-  return optimizeString === optimizeString.split('').reverse().join('');
+  return optimizeString === optimizeString.split("").reverse().join("");
 }
 
-isPalindrome('комок');
+isPalindrome("комок");
+
+//Date
