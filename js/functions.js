@@ -1,6 +1,6 @@
 // String
 function isSmallerThanLength(text, length) {
-  return text.length < length;
+  return text.length <= length;
 }
 
 isSmallerThanLength('проверяемая строка', 18);
@@ -14,3 +14,5 @@ function isPalindrome(string) {
 }
 
 isPalindrome('комок');
+
+//Date
