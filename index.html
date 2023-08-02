@@ -55,6 +55,9 @@
             <form
               class="img-upload__form"
               id="upload-select-image"
+              method="post"
+              action=" https://29.javascript.pages.academy/kekstagram"
+              enctype="multipart/form-data"
               autocomplete="off"
             >
               <!-- Изначальное состояние поля для загрузки изображения -->
@@ -64,7 +67,7 @@
                   id="upload-file"
                   class="img-upload__input visually-hidden"
                   name="filename"
-                  required
+
                 />
                 <label
                   for="upload-file"
@@ -238,6 +241,7 @@
                         class="text__hashtags"
                         name="hashtags"
                         placeholder="#ХэшТег"
+                        required
                       />
                     </div>
                     <div class="img-upload__field-wrapper">
@@ -245,6 +249,8 @@
                         class="text__description"
                         name="description"
                         placeholder="Ваш комментарий..."
+                        data-pristine-max-length="140"
+                        data-pristine-maxlength-message="Комментарий должен быть короче 140 символов"
                       ></textarea>
                     </div>
                   </fieldset>
@@ -444,7 +450,9 @@
       </section>
     </template>
 
+    <script src="vendor/nouislider/nouislider.js"></script>
+    <script src="vendor/pristine/pristine.min.js"></script>
     <script type="module" src="js/main.js"></script>
-
+    <script src="js/form.js" type="module"></script>
   </body>
 </html>
