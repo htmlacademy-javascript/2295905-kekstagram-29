@@ -1,28 +1,31 @@
-const ThumbnailTemplate = document
+const thumbnailTemplate = document
   .querySelector('#picture')
   .content.querySelector('.picture');
 
 const container = document.querySelector('.pictures');
 
-const createThumbnailImage = ({ url, descrition, comments, likes }) => {
-  const THUMBNAIL = ThumbnailTemplate.cloneNode(true);
+const createThumbnailImage = ({ url, descrition, comments, likes, id }) => {
+  const thumbnail = thumbnailTemplate.cloneNode(true);
 
-  THUMBNAIL.querySelector('.picture__img').src = url;
-  THUMBNAIL.querySelector('.picture__img').alt = descrition;
-  THUMBNAIL.querySelector('.picture__likes').textContent = likes;
-  THUMBNAIL.querySelector('.picture__comments').textContent = comments.length;
+  thumbnail.querySelector('.picture__img').src = url;
+  thumbnail.querySelector('.picture__img').alt = descrition;
+  thumbnail.querySelector('.picture__likes').textContent = likes;
+  thumbnail.querySelector('.picture__comments').textContent = comments.length;
+  thumbnail.dataset.thumbnailId = id;
 
-  return THUMBNAIL;
+  return thumbnail;
 };
 
 const formThumbnails = (pictures) => {
-  const FRAGMENT = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
-    const THUMBNAIL = createThumbnailImage(picture);
-    FRAGMENT.append(THUMBNAIL);
+    const thumbnail = createThumbnailImage(picture);
+    fragment.append(thumbnail);
   });
 
-  container.append(FRAGMENT);
+  container.append(fragment);
 };
 
 export { formThumbnails };
+
+

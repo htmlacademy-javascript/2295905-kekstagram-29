@@ -1,8 +1,12 @@
 import { createComments, createPhotos } from './data.js';
 
 createComments();
-createPhotos();
+const photos = createPhotos();
 
 import { formThumbnails } from './template.js';
 
 formThumbnails(createPhotos());
+
+import { formGallery } from './gallery.js';
+
+formGallery(photos);
