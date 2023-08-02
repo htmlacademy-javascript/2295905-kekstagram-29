@@ -64,7 +64,7 @@ const effectToSliderOptions = {
 };
 
 const modalElement = document.querySelector('.img-upload');
-const imageElement = modalElement.querySelector('img-upload__preview img');
+const imageElement = modalElement.querySelector('.img-upload__preview');
 const effectsElement = modalElement.querySelector('.effects');
 const sliderElement = modalElement.querySelector('.effect-level__slider');
 const sliderContainerElement = modalElement.querySelector('.img-upload__effect-level');
@@ -77,6 +77,7 @@ const setImageStyle = () => {
     imageElement.style.filter = null;
     return;
   }
+
 
   const { value } = effectLevelElement;
   const { style, unit } = effectToFilter[chosenEffect];
