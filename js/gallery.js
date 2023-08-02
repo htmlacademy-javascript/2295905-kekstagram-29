@@ -1,4 +1,3 @@
-import { formThumbnails } from './template.js';
 import { showBigMiniature } from './big-miniatures.js';
 
 
@@ -15,10 +14,10 @@ const formGallery = (pictures) => {
     const picture = pictures.find(
       (item) => item.id === +thumbnail.dataset.thumbnailId
     );
+
     showBigMiniature(picture);
   });
 
-  formThumbnails(container, pictures);
 };
 
 export { formGallery };

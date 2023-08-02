@@ -44,8 +44,8 @@ const getRandomArrayElement = (elements) =>
   elements[getRandomInteger(0, elements.length - 1)];
 
 const createComment = (id) => ({
-  id: ++id,
-  avatar: `avatar/${getRandomInteger(AvatarRange.MIN, AvatarRange.MAX)}.svg`,
+  id: +id,
+  avatar: `img/avatar-${getRandomInteger(AvatarRange.MIN, AvatarRange.MAX)}.svg`,
   message: `${getRandomArrayElement(MESSAGES)}`,
   name: `${getRandomArrayElement(NAMES)}`,
 });
@@ -57,7 +57,7 @@ const createComments = () =>
   );
 
 const createPhoto = (id) => ({
-  id: ++id,
+  id: +id,
   name: `${getRandomArrayElement(NAMES)}`,
   url: `photos/${id}.jpg`,
   description: `${getRandomArrayElement(DESCRIPTIONS)}`,

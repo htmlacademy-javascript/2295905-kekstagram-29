@@ -6,12 +6,14 @@ const bodyElement = document.querySelector('body');
 const cancelButtonElement = bigMiniatureElement.querySelector('.big-picture__cancel');
 const commentElement = document.querySelector('#comment');
 
-const createComment = ({ avatar, nickname, message }) => {
+const createComment = ({ avatar, nickname, message, }) => {
   const comment = commentElement.cloneNode(true);
 
+
   comment.querySelector('.social__picture').src = avatar;
-  comment.querySelector('.social__picture').src = nickname;
+  comment.querySelector('.social__picture').alt = nickname;
   comment.querySelector('.social__text').textContent = message;
+
 
   return comment;
 };
@@ -67,3 +69,4 @@ const showBigMiniature = (data) => {
 cancelButtonElement.addEventListener('click', onCancelButtonClick);
 
 export { showBigMiniature };
+
