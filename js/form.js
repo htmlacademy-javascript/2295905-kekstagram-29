@@ -4,6 +4,8 @@ import {
   reset as resetEffect
 } from './form-effect.js';
 
+import { showPreviewImage } from './upload-image.js';
+
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
@@ -74,6 +76,7 @@ const onCancelButtonClick = () => {
 
 const onFileInputChange = () => {
   showModal();
+  showPreviewImage();
 };
 
 const onFormSubmit = (evt) => {

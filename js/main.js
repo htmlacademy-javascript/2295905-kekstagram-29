@@ -14,10 +14,21 @@ formGallery(photos);
 import './form.js';
 
 import { getData } from './api.js';
+import { getFilteredImages } from './filter.js';
 
 getData()
   .then((data) => {
     formThumbnails(data);
     formGallery(data);
   });
+
+import { showAlert, debounce } from './util.js';
+
+try {
+  await getData();
+  debounce(formGallery);
+  formGallery(getFilteredImages());
+} catch(err) {
+  showAlert(err.message);
+}
 
