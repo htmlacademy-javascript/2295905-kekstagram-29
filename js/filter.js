@@ -5,7 +5,7 @@ const Filter = {
   DISCUSSED: 'filter-discussed',
 };
 
-const filterElement = document.querySelector('.img-filter');
+const filterElement = document.querySelector('.img-filters');
 let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
