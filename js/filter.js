@@ -1,3 +1,5 @@
+import { debounce } from './util.js';
+const RERENDER_TIMEOUT = 500;
 const PICTURES_COUNT = 10;
 const Filter = {
   DEFAULT: 'filter-default',
@@ -5,7 +7,7 @@ const Filter = {
   DISCUSSED: 'filter-discussed',
 };
 
-const filterElement = document.querySelector('.img-filter');
+const filterElement = document.querySelector('.img-filters');
 let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
@@ -25,6 +27,12 @@ const getFilteredImages = () => {
   }
 };
 
+const reRenderMiniatures = debounce((callback) => {
+  document.querySelectorAll('.picture').forEach((item) => item.remove());
+
+  callback(getFilteredImages());
+}, RERENDER_TIMEOUT);
+
 const onFilterClick = (callback) => {
   filterElement.addEventListener('click', (evt) => {
     if(!evt.target.classList.contains('img-filters__button')) {
@@ -35,12 +43,12 @@ const onFilterClick = (callback) => {
     if(clickedButton.id === currentFilter) {
       return;
     }
-
-    filterElement.querySelector('img-filters__button--active')
+    filterElement.querySelector('.img-filters__button--active')
       .classList.remove('img-filters__button--active');
-    clickedButton.classList.add('img-filter__button--active');
+    clickedButton.classList.add('img-filters__button--active');
     currentFilter = clickedButton.id;
-    callback(getFilteredImages());
+
+    reRenderMiniatures(callback);
   });
 };
 
@@ -48,6 +56,7 @@ const init = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   onFilterClick(callback);
+
 };
 
 export { init, getFilteredImages};

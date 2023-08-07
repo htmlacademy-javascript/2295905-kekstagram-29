@@ -1,34 +1,19 @@
-import { createComments, createPhotos } from './data.js';
-
-createComments();
-const photos = createPhotos();
-
 import { formThumbnails } from './template.js';
-
-formThumbnails(createPhotos());
-
 import { formGallery } from './gallery.js';
-
-formGallery(photos);
-
 import './form.js';
-
 import { getData } from './api.js';
-import { getFilteredImages } from './filter.js';
+import { init } from './filter.js';
+import { showAlert } from './util.js';
 
 getData()
   .then((data) => {
     formThumbnails(data);
     formGallery(data);
-  });
+    init(data, formThumbnails);
+  })
+  .catch((error) => {
+    showAlert(error.message);
+  }
+  );
 
-import { showAlert, debounce } from './util.js';
-
-try {
-  await getData();
-  debounce(formGallery);
-  formGallery(getFilteredImages());
-} catch(err) {
-  showAlert(err.message);
-}
 

@@ -140,6 +140,7 @@ const onEffectsChange = (evt) => {
 function init() {
   setSlider();
   effectsElement.addEventListener('change', onEffectsChange);
+
 }
 
 export { init, reset};

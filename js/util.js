@@ -1,3 +1,8 @@
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Опубликовываю...'
+};
+
 const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
   return (...rest) => {
@@ -24,4 +29,15 @@ const showAlert = (message) => {
   document.body.append(alertContainer);
 };
 
-export { showAlert, debounce };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const disableEscHandling = (element) => {
+  element.addEventListener('keydown', (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.stopPropagation();
+    }
+  });
+};
+
+
+export { showAlert, debounce, isEscapeKey, SubmitButtonText, disableEscHandling};
