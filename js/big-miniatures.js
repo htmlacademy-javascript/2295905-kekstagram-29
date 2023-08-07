@@ -36,7 +36,6 @@ const showBigMiniature = (data) => {
   bigMiniatureElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-  //commentsLoaderElement.addEventListener('click', onCommentsLoaderClick);
   formPictureDetails(data);
   formComments(data.comments);
 };

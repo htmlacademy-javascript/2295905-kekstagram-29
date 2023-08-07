@@ -2,8 +2,6 @@ const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const SCALE_STEP = 25;
 const DEFAULT_SCALE = 100;
-
-
 const modalElement = document.querySelector('.img-upload');
 const smallerButtonElement = modalElement.querySelector('.scale__control--smaller');
 const biggerButtonElement = modalElement.querySelector('.scale__control--bigger');
