@@ -5,9 +5,12 @@ import {
 } from './form-effect.js';
 
 import { showPreviewImage } from './upload-image.js';
+import { debounce, } from './util.js';
 
+
+const SUBMIT_TIMEOUT = 500;
 const MAX_HASHTAG_COUNT = 5;
-const VALID_SYMBOLS = /^[a-zа-яё0-9]{1,19}$/i;
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
   INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
   NOT_UNIQUE: 'Хэштеги должны быть уникальными',
@@ -21,6 +24,7 @@ const fileField = form.querySelector('.img-upload__input');
 const cancelButton = form.querySelector('.img-upload__cancel');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
+
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -49,12 +53,13 @@ const hideModal = () => {
   document.activeElement === hashtagField || document.activeElement === commentField;
 }*/
 
+
 const normalizeTags = (tagString) => tagString
   .trim()
-  .split()
+  .split(' ')
   .filter((tag) => Boolean(tag.length));
 
-const areValidTags = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
+const areValidTags = (value) => value.length === 0 || normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
 
 const areValidCount = (value) => normalizeTags(value).length <= MAX_HASHTAG_COUNT;
 
@@ -79,10 +84,9 @@ const onFileInputChange = () => {
   showPreviewImage();
 };
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
+const onFormSubmit = debounce(() => {
   pristine.validate();
-};
+}, SUBMIT_TIMEOUT);
 
 pristine.addValidator(
   hashtagField,
@@ -106,9 +110,14 @@ pristine.addValidator(
   true
 );
 
+
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
-form.addEventListener('submit', onFormSubmit);
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  onFormSubmit();
+});
+
 initEffect();
 
 commentField.addEventListener('keydown', (evt) => {

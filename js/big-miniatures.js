@@ -1,10 +1,15 @@
 const bigMiniatureElement = document.querySelector('.big-picture');
-const commentCountElement = bigMiniatureElement.querySelector('.social__comment-count');
+//const commentCountElement = bigMiniatureElement.querySelector('.social__comment-count');
 const commentListElement = bigMiniatureElement.querySelector('.social__comments');
 const commentsLoaderElement = bigMiniatureElement.querySelector('.comments-loader');
 const bodyElement = document.querySelector('body');
 const cancelButtonElement = bigMiniatureElement.querySelector('.big-picture__cancel');
 const commentElement = document.querySelector('#comment');
+
+//const COMMENTS_PER_PORTION = 5;
+//let commentsShown = 0;
+
+
 const createComment = ({ avatar, nickname, message, }) => {
   const comment = commentElement.cloneNode(true);
 
@@ -29,6 +34,7 @@ const formComments = (comments) => {
   commentListElement.append(fragment);
 };
 
+
 const hideBigMiniature = () => {
   bigMiniatureElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
@@ -52,15 +58,15 @@ const formPictureDetails = ({ url, likes, description }) => {
   bigMiniatureElement.querySelector('img').alt = description;
   bigMiniatureElement.querySelector('.likes-count').textContent = likes;
   bigMiniatureElement.querySelector('.social__caption').textContent = description;
-  console.log(bigMiniatureElement.querySelector('img'));
+
 };
 
 const showBigMiniature = (data) => {
   bigMiniatureElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
-  commentCountElement.classList.add('hidden');
   commentsLoaderElement.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
+  //commentsLoaderElement.addEventListener('click', onCommentsLoaderClick);
   formPictureDetails(data);
   formComments(data.comments);
 };

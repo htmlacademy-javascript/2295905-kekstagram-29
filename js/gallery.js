@@ -5,12 +5,12 @@ const container = document.querySelector('.pictures');
 
 const formGallery = (pictures) => {
   container.addEventListener('click', (evt) => {
-    evt.preventDefault();
+
     const thumbnail = evt.target.closest('[data-thumbnail-id]');
     if(!thumbnail) {
       return;
     }
-
+    evt.preventDefault();
     const picture = pictures.find(
       (item) =>
         item.id === +thumbnail.dataset.thumbnailId
