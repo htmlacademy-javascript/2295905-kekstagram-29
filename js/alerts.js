@@ -1,6 +1,9 @@
-import { form, uploadWrapper } from './upload-image.js';
 import { showAlert, isEscapeKey } from './util.js';
-import { clearUpload, fileChooser, cancelUploadByKeydown } from './upload-image.js';
+import { onDocumentKeydown, hideModal } from './form.js';
+
+const form = document.querySelector('.img-upload__form');
+const uploadWrapper = document.querySelector('.img-upload__wrapper');
+const fileChooser = document.querySelector('.img-upload__input');
 
 
 const errorTemplate = document.querySelector('#error')
@@ -13,14 +16,13 @@ const showError = (message) => {
   const errorTitle = errorElement.querySelector('.error__title');
   const errorButton = errorElement.querySelector('.error__button');
   errorTitle.textContent = message;
-  uploadWrapper.classList.add('hidden');
-  document.removeEventListener('keydown', cancelUploadByKeydown);
+  document.removeEventListener('keydown', onDocumentKeydown);
   let returnToFormOnEscapeClick = () => {};
 
   const removeErrorMessage = () => {
     errorButton.removeEventListener('click', removeErrorMessage);
     document.removeEventListener('keydown', returnToFormOnEscapeClick);
-    document.addEventListener('keydown', cancelUploadByKeydown);
+    document.addEventListener('keydown', onDocumentKeydown);
     uploadWrapper.classList.remove('hidden');
     errorElement.remove();
   };
@@ -55,7 +57,7 @@ const showSuccess = () => {
   const successElement = successTemplate.cloneNode(true);
   const successInnerContainer = successElement.querySelector('.success__inner');
   const successButton = successElement.querySelector('.success__button');
-  clearUpload();
+  hideModal();
   let returnToFormOnEscapeClick = () => {};
   const removeSuccessMessage = () => {
     successButton.removeEventListener('click', removeSuccessMessage);

@@ -25,6 +25,7 @@ const showAlert = (message) => {
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
+
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
   SENDING: 'Опубликовываю...'
